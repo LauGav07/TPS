@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Form di Registrazione</title>
+    <style>
+        body {
+            font-family: Helvetica;
+        }
+        .dati {
+            margin-top: 20px;
+        }
+        .dati div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <h2>Form di Registrazione</h2>
+   
+    <form id="Form">
+        <label for="cognome">Cognome:</label><br>
+        <input type="text" id="cognome" name="cognome"><br><br>
+       
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br><br>
+       
+        <label for="indirizzo">Indirizzo:</label><br>
+        <input type="text" id="indirizzo" name="indirizzo"><br><br>
+       
+        <label for="citta">Città:</label><br>
+        <input type="text" id="citta" name="citta"><br><br>
+       
+        <label for="cap">CAP:</label><br>
+        <input type="text" id="cap" name="cap"><br><br>
+       
+        <label for="nazione">Nazione:</label><br>
+        <input type="text" id="nazione" name="nazione"><br><br>
+       
+        <button type="button" onclick="mostraValori()">Cliccami</button>
+    </form>
+
+
+    <div class="dati" id="dati"></div>
+
+
+    <script>
+        function mostraValori() {
+            var cognome = document.getElementById("cognome").value;
+            var nome = document.getElementById("nome").value;
+            var indirizzo = document.getElementById("indirizzo").value;
+            var citta = document.getElementById("citta").value;
+            var cap = document.getElementById("cap").value;
+            var nazione = document.getElementById("nazione").value;
+
+
+           
+            var datiIng = document.getElementById("dati");
+           
+       
+
+
+         
+            var campi = [cognome, nome,  indirizzo, citta,  cap, nazione];
+            var etichette = ["Cognome", "Nome", "Indirizzo", "Città", "CAP","Nazione" ]
+            campi.forEach(function(campo, indice) {
+                var div = document.createElement("div");
+                div.textContent = etichette[indice] + ": " + campo;
+                datiIng.appendChild(div);
+            });
+        }
+    </script>
+
+
+</body>
+</html>

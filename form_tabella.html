@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <style> 
+    table, th, td {
+        border: 1px solid black;
+        }
+        </style>
+   
+</head>
+    <body>
+    <h1>Inserisci i tuoi dati</h1>
+    <form id="form1">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome"><br><br>
+        <label for="cognome">Cognome:</label>
+        <input type="text" id="cognome" name="cognome"><br><br>
+        <label for="indirizzo">Indirizzo:</label>
+        <input type="text" id="indirizzo" name="indirizzo"><br><br>
+        <label for="citta">Città:</label>
+        <input type="text" id="citta" name="citta"><br><br>
+        <button type="button" onclick="inserisciDati()">Clicca</button>
+        <button type="button" onclick="vaiAllaSecondaPagina()">invia alla Seconda Pagina</button>
+        <button type="button" onclick="svuotaTabella()">svuota tabella</button>
+    </form>
+    
+    <h2>Elenco Dati</h2>
+    <table id="tabella1" ></table>
+
+    <script>   
+       
+
+        function inserisciDati() {
+            let nome = document.getElementById('nome').value;
+        let cognome = document.getElementById('cognome').value;
+        let indirizzo = document.getElementById('indirizzo').value;
+        let citta = document.getElementById('citta').value;
+   
+            let tabella = document.getElementById('tabella1');
+            let riga = document.createElement("tr");
+
+            let valori = [nome, cognome, indirizzo, citta];
+            for (let i = 0; i < valori.length; i++) {
+                let colonna = document.createElement("td");
+                colonna.innerHTML = valori[i];
+                riga.appendChild(colonna);
+            }
+            tabella.appendChild(riga);
+
+           
+
+            
+        }
+        function vaiAllaSecondaPagina(){
+            let nome = document.getElementById('nome').value;
+        let cognome = document.getElementById('cognome').value;
+        let indirizzo = document.getElementById('indirizzo').value;
+        let citta = document.getElementById('citta').value;
+            localStorage.setItem("nome", nome);
+            localStorage.setItem("cognome", cognome);
+            localStorage.setItem("indirizzo", indirizzo);
+            localStorage.setItem("citta", citta);
+        }
+        function svuotaTabella (){
+            document.getElementById('nome').value = "";
+            document.getElementById('cognome').value = "";
+            document.getElementById('indirizzo').value = "";
+            document.getElementById('citta').value = "";
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <style> 
+    table, th, td {
+        border: 1px solid black;
+        }
+        </style>  
+</head>
+    <body>    
+    <h2>Elenco Dati</h2>
+    <button type="button" onclick="inserisciDati()">Ricevi dati</button>
+        <table id="tabella1"  ></table>
+
+        <script>
+            function inserisciDati() {
+                nome = localStorage.getItem("nome");
+                cognome = localStorage.getItem("cognome");
+                indirizzo= localStorage.getItem("indirizzo");
+                citta = localStorage.getItem("citta");
+    let tabella = document.getElementById('tabella1');
+    let riga = document.createElement("tr");
+
+    let valori = [nome, cognome, indirizzo, citta];
+    for (let i = 0; i < valori.length; i++) {
+        let colonna = document.createElement("td");
+        colonna.innerHTML = valori[i];
+        riga.appendChild(colonna);
+    }
+    tabella.appendChild(riga);
+    }
+            
+        </script>
+    </body>
+    </html>
+
