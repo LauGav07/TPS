@@ -31,22 +31,18 @@
         <h2>Array Ordinato Decrescente</h2>
         <div id="ordinatoDecrescente"></div>
     </div>
-
+    
     <script>
         function ordina() {
             const input = document.getElementById('numeriInput').value;
-
-            const numeri = input.split(' ').map(Number);
-
-            const crescente = [...numeri].sort((a, b) => a - b);
-            const decrescente = [...numeri].sort((a, b) => b - a);
-
-            document.getElementById('ordinatoCrescente').innerText = crescente.join(' ');
-            document.getElementById('ordinatoDecrescente').innerText = decrescente.join(' ');
+            const numero = input.split(' ').map(Number);
+            const crescente = [...numero].sort((a, b) => a - b);
+            const decrescente = [...numero].sort((a, b) => b - a);
+            document.getElementById('ordinatoCrescente').innerText = crescente.join(', ');;
+            document.getElementById('ordinatoDecrescente').innerText = decrescente.join(', ');
         }
 
         document.getElementById('ordinaBottone').addEventListener('click', ordina);
     </script>
 </body>
 </html>
- 
