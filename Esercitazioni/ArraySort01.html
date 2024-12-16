@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Ordinamento Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .output {
+            margin-top: 10px;
+        }
+        #ordinatoCrescente, #ordinatoDecrescente {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ordinamento di un Array</h1>
+    <label for="numeriInput">Inserisci i numeri separati da spazio:</label>
+    <input type="text" id="numeriInput">
+    <button id="ordinaBottone">Ordina Array</button>
+
+    <div class="output">
+        <h2>Array Ordinato Crescente</h2>
+        <div id="ordinatoCrescente"></div>
+    </div>
+    <div class="output">
+        <h2>Array Ordinato Decrescente</h2>
+        <div id="ordinatoDecrescente"></div>
+    </div>
+    
+    <script>
+        function ordina() {
+            const input = document.getElementById('numeriInput').value;
+            const numero = input.split(' ').map(Number);
+            const crescente = [...numero].sort((a, b) => a - b);
+            const decrescente = [...numero].sort((a, b) => b - a);
+            document.getElementById('ordinatoCrescente').innerText = crescente.join(', ');
+            document.getElementById('ordinatoDecrescente').innerText = decrescente.join(', ');
+        }
+
+        document.getElementById('ordinaBottone').addEventListener('click', ordina);
+    </script>
+</body>
+</html>
