@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Visualizza File</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #444;
+        }
+        .input {
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #4b478d;
+            color: white;
+            border-radius: 5px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #4b478d;
+            color: white;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #4b478d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carica un file di testo</h1>
+
+    <input  class="input" type="file" onchange="letturaFile(this)">
+
+    <button type="button" onclick="inserisciDati()">Ricevi dati</button>
+    <br>
+    <div><table id="tabella1"></table></div>
+    
+
+    <script>
+        let testo = "";
+
+        function letturaFile(input) {
+            let file = input.files[0];   
+            let lettura = new FileReader(); 
+            
+            lettura.onload = function(event) {
+                testo = event.target.result;
+            };
+            
+            lettura.readAsText(file); 
+        }
+
+        function inserisciDati() {
+            
+
+            let tabella = document.getElementById('tabella1');
+            tabella.innerHTML = ""; 
+
+            let righe = testo.split("\n");
+            
+            for (let i = 0; i < righe.length; i++) {
+                let valori = righe[i].split("\t"); 
+                let rigaTabella = document.createElement("tr");
+
+            for (let j = 0; j < valori.length; j++) {
+                if (i === 0) {                
+                    let rigaIntestazione = document.createElement("th");
+                    rigaIntestazione.textContent = valori[j].trim();
+                    rigaTabella.appendChild(rigaIntestazione);
+                } else {
+                    let colonna = document.createElement("td");
+                    colonna.textContent = valori[j].trim();
+                    rigaTabella.appendChild(colonna);
+                }
+            }
+            tabella.appendChild(rigaTabella);
+            }
+        }
+    </script>
+</body>
+</html>
