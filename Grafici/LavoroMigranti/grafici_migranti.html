@@ -32,8 +32,8 @@
             if (riga.length === 2) {
                 const anno = parseInt(riga[0].replace(/"/g, '').trim(), 10);
                 const datiMig = parseFloat(riga[1].replace(/"/g, '').trim());
-                if (!isNaN(anno) && !isNaN(datiMig)) {
-                    dati.push({ anno: anno, datiMig: datiMig });
+                if (anno !== null && anno !== undefined && datiMig !== null && datiMig !== undefined) {
+                    dati.push({ anno: anno, datiMig: datiMig }); // sto aggiungendo al vettore dati un dizionario differenziando i due valori, anno e numero dei migranti
                 }
             }
         }
