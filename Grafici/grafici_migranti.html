@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graph</title>
+</head>
+<body>
+    <div>
+        <input type="file" id="inputFile" accept=".csv">
+        <button onclick="caricamento()">crea grafico</button>
+    </div>
+    
+    <canvas id="grafico" width="600" height="400"></canvas>
+
+    
+    <script>
+    function caricamento() {
+        const file = document.getElementById('inputFile').files[0];
+        const lettore = new FileReader();
+        lettore.onload = processaFile;
+        lettore.readAsText(file);
+    }
+    function processaFile(evento) {
+        const dati = converti(evento.target.result); //evento.target.result è la stringa di testo che ti dà la lettura del file, se l'evento avviene, ovvero se il file viene letto correttamente, prendi il risultato. sono andata a cercarla online come soluzione
+        aggiornaGrafico(dati);
+    }
+
+    function converti(testo) {
+        const righe = testo.split('\n');
+        const dati = [];
+        for (var i = 1; i < righe.length; i++) { 
+            const riga = righe[i].split(',');
+            if (riga.length === 2) {
+                const anno = parseInt(riga[0].replace(/"/g, '').trim(), 10);
+                const datiMig = parseFloat(riga[1].replace(/"/g, '').trim());
+                if (!isNaN(anno) && !isNaN(datiMig)) {
+                    dati.push({ anno: anno, datiMig: datiMig });
+                }
+            }
+        }
+        return dati;
+    }
+
+    function aggiornaGrafico(dati) {
+        const canvas = document.getElementById('grafico');
+        const contesto = canvas.getContext('2d');
+
+        const etichette = [];
+        const datiGrafico = [];
+
+        for (var i = 0; i < dati.length; i++) {
+            etichette.push(dati[i].anno);
+            datiGrafico.push(dati[i].datiMig);
+        }
+
+        disegnaGrafico(etichette, datiGrafico);
+    }
+
+    function disegnaGrafico(etichette, datiGrafico) {
+        const canvas = document.getElementById('grafico');
+        const contesto = canvas.getContext('2d');
+
+        contesto.clearRect(0, 0, canvas.width, canvas.height);
+        contesto.beginPath();
+        contesto.moveTo(50, 350);
+        contesto.lineTo(550, 350); 
+        contesto.moveTo(50, 350);
+        contesto.lineTo(50, 50); 
+        contesto.stroke();
+
+        var maxVal = 0;
+        for (var i = 0; i < datiGrafico.length; i++) {
+            if (datiGrafico[i] > maxVal) {
+                maxVal = datiGrafico[i];
+            }
+        }
+
+        const stepY = 300 / maxVal;
+
+        disegnaEtichette(contesto, etichette, maxVal, stepY);
+
+        for (var i = 0; i < etichette.length; i++) {
+            const x = 50 + (500 / (etichette.length - 1)) * i;
+            const y = 350 - (300 / maxVal) * datiGrafico[i];
+            contesto.beginPath();
+            contesto.fill();
+
+            if (i < etichette.length - 1) {
+                const nextX = 50 + (500 / (etichette.length - 1)) * (i + 1);
+                const nextY = 350 - (300 / maxVal) * datiGrafico[i + 1];
+                contesto.beginPath();
+                contesto.moveTo(x, y);
+                contesto.lineTo(nextX, nextY);
+                contesto.stroke();
+            }
+        }
+    }
+
+    function disegnaEtichette(contesto, etichette, maxVal, stepY) {
+        for (var i = 0; i <= maxVal; i += maxVal / 10) {
+            contesto.fillText(Math.round(i), 10, 350 - stepY * i); 
+        }
+
+        for (var i = 0; i < etichette.length; i++) {
+            const x = 50 + (500 / (etichette.length - 1)) * i;
+            contesto.fillText(etichette[i], x - 10, 370); 
+        }
+    }
+    </script>
+</body>
+</html>
