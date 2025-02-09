@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Importa Testo</title>
+</head>
+<body>
+    <h1>Importa il file di testo</h1>
+    <input type="file" id="fileInput">
+    <br><br>
+    <label for="chiave">Inserisci la chiave numerica:</label>
+    <input type="number" id="chiave" min="1" max="25">
+    <br><br>
+    <button onclick="criptaTesto()">Cripta e salva</button>
+    <br><br>
+    <a href="testo_criptato.html">Vai alla pagina del testo criptato</a>
+
+    <script>
+        function cifrare(testo, chiave) {
+            var alfabeto = "abcdefghijklmnopqrstuvwxyz";
+            var risultato = "";
+            
+            for (var i = 0; i < testo.length; i++) {
+                var carattere = testo[i].toLowerCase();
+                var indice = alfabeto.indexOf(carattere); // va a cercare che indice ha un carattere preso dal testo importato nell'alfabeto
+                
+                if (indice !== -1) {
+                    var nuovoIndice = (indice + chiave + 26) % 26; //%26 serve per far andare la z dall'altro lato, modulare
+                    risultato += alfabeto[nuovoIndice];
+                } else {
+                    risultato += carattere;
+                }
+            }
+            
+            return risultato;
+        }
+
+        function criptaTesto() {
+            var fileInput = document.getElementById("fileInput");
+            var chiave = parseInt(document.getElementById("chiave").value);
+            
+            
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            // esercizio di settimana scorsa ma con la funzione direttamente nella variabile, al posto di andare a creare un nuovo metodo
+            //evento.target.result è la stringa di testo che ti dà la lettura del file, se l'evento avviene, ovvero se il file viene letto correttamente, prendi il risultato. sono andata a cercarla online come soluzione
+            reader.onload = function(event) {
+                var testo = event.target.result;
+                var testoCriptato = cifrare(testo, chiave);
+                localStorage.setItem("testoCriptato", testoCriptato);
+            };
+            
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>

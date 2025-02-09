@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Testo Criptato</title>
+</head>
+<body>
+    <h1>Testo Criptato</h1>
+    <p id="testoCriptato"></p>
+    <br>
+    <label for="chiaveDecifra">Inserisci la chiave per decriptare:</label>
+    <input type="number" id="chiaveDecifra" min="1" max="25">
+    <br><br>
+    <button onclick="decriptaTesto()">Decripta</button>
+    <p id="testoDecriptato"></p>
+
+    <script>
+        function cifrare(testo, chiave) {
+            var alfabeto = "abcdefghijklmnopqrstuvwxyz";
+            var risultato = "";
+            
+            for (var i = 0; i < testo.length; i++) {
+                var carattere = testo[i].toLowerCase();
+                var indice = alfabeto.indexOf(carattere);
+                
+                if (indice !== -1) {
+                    var nuovoIndice = (indice + chiave + 26) % 26;
+                    risultato += alfabeto[nuovoIndice];
+                } else {
+                    risultato += carattere;
+                }
+            }
+            
+            return risultato;
+        }
+
+        function decriptaTesto() {
+            var chiaveDecifra = parseInt(document.getElementById("chiaveDecifra").value);
+            var testoCriptato = localStorage.getItem("testoCriptato");
+                        
+            var testoDecriptato = cifrare(testoCriptato, -chiaveDecifra); //operazione inversa
+            document.getElementById("testoDecriptato").textContent = testoDecriptato;
+        }
+    </script>
+</body>
+</html>
