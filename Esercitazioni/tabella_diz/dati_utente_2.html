@@ -2,6 +2,38 @@
 <html lang="it">
 <head>
     <title>Dati Utente</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #30296e;
+            color: white;
+        }
+        
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+           
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
     <h2>Dati Salvati</h2>
@@ -51,7 +83,6 @@
         
 
         function resetTabella() {
-            localStorage.removeItem("dati");
             document.getElementById("tabellaDati").innerHTML = "";
         }
 
