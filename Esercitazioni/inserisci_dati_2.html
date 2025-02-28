@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+   <title>Inserisci Dati</title>
+</head>
+<body>
+    <h2>Inserisci i tuoi dati</h2>
+    <form id="userForm">
+        <label>Nome: <input type="text" id="nome" required></label><br>
+        <label>Cognome: <input type="text" id="cognome" required></label><br>
+        <label>Età: <input type="number" id="eta" required></label><br>
+        <label>Indirizzo: <input type="text" id="indirizzo" required></label><br>
+    </form>
+    <button id="salva" onclick="salvaDati()">Salva</button>
+    <a href="dati_utente_2.html">Vai alla seconda pagina</a>
+
+    <script>
+        function salvaDati() {
+            let nome = document.getElementById("nome").value;
+            let cognome = document.getElementById("cognome").value;
+            let eta = document.getElementById("eta").value;
+            let indirizzo = document.getElementById("indirizzo").value;
+            
+            let utente = {
+                nome: nome,
+                cognome: cognome,
+                eta: eta,
+                indirizzo: indirizzo
+            };
+
+            localStorage.setItem("dati", JSON.stringify(utente));
+        }
+    </script>
+</body>
+</html>

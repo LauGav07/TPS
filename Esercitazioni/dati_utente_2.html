@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Dati Utente</title>
+</head>
+<body>
+    <h2>Dati Salvati</h2>
+    <a href="inserisci_dati_2.html">Torna a prima pagina</a>
+    <br>
+    <button onclick="resetTabella()">Elimina dati</button>
+    <button onclick="mostraDati()">Mostra Dati</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Età</th>
+                <th>Indirizzo</th>
+            </tr>
+        </thead>
+        <tbody id="tabellaDati"></tbody>
+    </table>
+
+    <script>
+        function mostraDati() {
+            let datiUtente = localStorage.getItem("dati");
+
+            let utente = JSON.parse(datiUtente);
+            let tabella = document.getElementById("tabellaDati");
+
+            let riga = document.createElement("tr");
+
+            let colonnaNome = document.createElement("td");
+            colonnaNome.textContent = utente.nome;
+            riga.appendChild(colonnaNome);
+
+            let colonnaCognome = document.createElement("td");
+            colonnaCognome.textContent = utente.cognome;
+            riga.appendChild(colonnaCognome);
+
+            let colonnaEta = document.createElement("td");
+            colonnaEta.textContent = utente.eta;
+            riga.appendChild(colonnaEta);
+
+            let colonnaIndirizzo = document.createElement("td");
+            colonnaIndirizzo.textContent = utente.indirizzo;
+            riga.appendChild(colonnaIndirizzo);
+
+            tabella.appendChild(riga);
+        }
+        
+
+        function resetTabella() {
+            localStorage.removeItem("dati");
+            document.getElementById("tabellaDati").innerHTML = "";
+        }
+
+    </script>
+</body>
+</html>
