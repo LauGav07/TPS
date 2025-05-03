@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pagina Utente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="aggiornaCarrello();">
+    <h2>Pagina Utente</h2>
+    <table id="tabella-carrello">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modello</th>
+                <th>Prezzo</th>
+                <th>Quantità</th>
+                <th>Totale</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <p id="totale-carrello"></p>
+
+    <button id="svuota-carrello" onclick="svuotaCarrello()">Svuota Carrello</button>
+
+    <form id="form-acquisto">
+        <input type="text" id="indirizzo" placeholder="Indirizzo di spedizione" required>
+        
+        <select id="metodo-pagamento">
+            <option value="carta">Carta di Credito</option>
+            <option value="paypal">PayPal</option>
+        </select>
+        
+        <button type="button" onclick="gestisciAcquisto()">Conferma Acquisto</button>
+    </form>
+    
+    <button onclick="tornaMenu()">Menu</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
