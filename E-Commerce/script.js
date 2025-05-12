@@ -195,5 +195,33 @@ function bottone_click() {
 
 function gestisciAcquisto() {
     alert("Acquisto confermato!");
+    
+}
+function stampaScontrino() {
+    let carrello_stampa = generaTestoScontrino(carrello);
+
+    
+    let doc = new jsPDF()
+    doc.text( carrello_stampa , 10, 10)
+    doc.save('scontrino.pdf')
     localStorage.removeItem("carrello");
+}
+
+function generaTestoScontrino(carrello) {
+    var righe = [];
+    for (var i = 0; i < carrello.length; i++) {
+        var p = carrello[i];
+        var totale = (p.prezzo * p.quantita).toFixed(2);
+        righe.push(p.marca + " " + p.modello + " - $" + p.prezzo.toFixed(2) + " x " + p.quantita + " = $" + totale);
+    }
+
+    var totaleFinale = 0;
+    for (var i = 0; i < carrello.length; i++) {
+        totaleFinale += carrello[i].prezzo * carrello[i].quantita;
+    }
+
+    righe.push("");
+    righe.push("Totale: $" + totaleFinale.toFixed(2));
+
+    return righe.join('\n');
 }
