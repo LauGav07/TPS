@@ -1,0 +1,23 @@
+[
+  {
+    "nome": "Mario",
+    "cognome": "Rossi",
+    "indirizzo": "Via Roma 1",
+    "citta": "Milano",
+    "cap": "20100"
+  },
+  {
+    "nome": "Luigi",
+    "cognome": "Verdi",
+    "indirizzo": "Piazza Duomo 2",
+    "citta": "Milano",
+    "cap": "20100"
+  },
+  {
+    "nome": "Anna",
+    "cognome": "Bianchi",
+    "indirizzo": "Corso Italia 3",
+    "citta": "Roma",
+    "cap": "00100"
+  }
+]

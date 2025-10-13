@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            margin: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #222;
+            margin-bottom: 20px;
+        }
+       
+        button {
+            background-color: #0078d7;
+            color: white;
+            border: none;
+        }
+    
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    </style>
+    <title>Elenco Persone</title>
+</head>
+<body>
+    <input id="fileInput" type="file" accept=".json">
+    <button type="button"  onclick="leggi()" >Inserisci</button>
+    <h1>Elenco Persone</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Indirizzo</th>
+                <th>Città</th>
+                <th>CAP</th>
+            </tr>
+        </thead>
+        <tbody id="tabella">
+        </tbody>
+    </table>
+    <script src="js_primo.js"></script>
+</body>
+</html>
