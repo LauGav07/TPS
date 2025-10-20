@@ -1,0 +1,6 @@
+[
+  {"nome": "Mario", "cognome": "Rossi", "dataNascita": "1985-06-12", "indirizzo": "Via Roma 1", "citta": "Milano", "cap": "20100"},
+  {"nome": "Laura", "cognome": "Kim", "dataNascita": "2003-09-22", "indirizzo": "Via Lago 3", "citta": "Bergamo", "cap": "24100"},
+  {"nome": "Gianni", "cognome": "Kristo", "dataNascita": "1978-11-03", "indirizzo": "Corso Italia 5", "citta": "Roma", "cap": "00100"},
+  {"nome": "Sara", "cognome": "Bianchi", "dataNascita": "2015-04-15", "indirizzo": "Via Verdi 2", "citta": "Torino", "cap": "10100"}
+]
