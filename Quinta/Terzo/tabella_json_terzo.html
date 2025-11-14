@@ -81,7 +81,7 @@ function popola() {
     let tabella = document.getElementById("tabella");
     tabella.innerHTML = "";
 
-    for (var i = 0; i < contenuto_tabella.length; i++) {
+    for (let i = 0; i < contenuto_tabella.length; i++) {
         let persona = contenuto_tabella[i];
         let row = tabella.insertRow();
         row.insertCell(0).textContent = persona.nome;
@@ -94,4 +94,5 @@ function popola() {
 </script>
 </body>
 </html>
+
 
