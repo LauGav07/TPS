@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<definitions name="ConverterService"
+ targetNamespace="http://localhost/soap_converter"
+ xmlns:tns="http://localhost/soap_converter"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+<xsd:schema targetNamespace="http://localhost/soap_converter">
+
+<xsd:element name="cmToInchRequest">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="cm" type="xsd:float"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="cmToInchResponse">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="inch" type="xsd:float"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="inchToCmRequest">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="inch" type="xsd:float"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="inchToCmResponse">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="cm" type="xsd:float"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+
+</xsd:schema>
+</types>
+
+<message name="cmToInchRequest">
+  <part name="parameters" element="tns:cmToInchRequest"/>
+</message>
+
+<message name="cmToInchResponse">
+  <part name="parameters" element="tns:cmToInchResponse"/>
+</message>
+
+<message name="inchToCmRequest">
+  <part name="parameters" element="tns:inchToCmRequest"/>
+</message>
+
+<message name="inchToCmResponse">
+  <part name="parameters" element="tns:inchToCmResponse"/>
+</message>
+
+<portType name="ConverterPortType">
+
+<operation name="cmToInch">
+  <input message="tns:cmToInchRequest"/>
+  <output message="tns:cmToInchResponse"/>
+</operation>
+
+<operation name="inchToCm">
+  <input message="tns:inchToCmRequest"/>
+  <output message="tns:inchToCmResponse"/>
+</operation>
+
+</portType>
+
+<binding name="ConverterBinding" type="tns:ConverterPortType">
+<soap:binding style="document"
+ transport="http://schemas.xmlsoap.org/soap/http"/>
+
+<operation name="cmToInch">
+  <soap:operation soapAction="cmToInch"/>
+  <input><soap:body use="literal"/></input>
+  <output><soap:body use="literal"/></output>
+</operation>
+
+<operation name="inchToCm">
+  <soap:operation soapAction="inchToCm"/>
+  <input><soap:body use="literal"/></input>
+  <output><soap:body use="literal"/></output>
+</operation>
+
+</binding>
+
+<service name="ConverterService">
+<port name="ConverterPort" binding="tns:ConverterBinding">
+<soap:address location="http://localhost/soap_converter/server.php"/>
+</port>
+</service>
+
+</definitions>
